@@ -1,11 +1,19 @@
 /**
- * Axios API instance with auth interceptors
+ * Axios API instance
+ * - In development: baseURL = '/api'  (Vite proxy forwards to localhost:5000)
+ * - In production:  baseURL = VITE_API_URL + '/api'  (Railway backend URL)
  */
 
 import axios from 'axios';
 
+// VITE_API_URL must be set in Railway frontend env vars, e.g.:
+//   https://your-backend.up.railway.app
+const BASE = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: BASE,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -19,7 +27,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Handle 401 globally (token expired)
+// Handle 401 globally (token expired / invalid)
 api.interceptors.response.use(
   (response) => response,
   (error) => {

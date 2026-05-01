@@ -1,16 +1,20 @@
 /**
  * Axios API instance
  * - In development: baseURL = '/api'  (Vite proxy forwards to localhost:5000)
- * - In production:  baseURL = VITE_API_URL + '/api'  (Railway backend URL)
+ * - In production:  baseURL = VITE_API_URL + '/api'  (Render/Railway backend URL)
+ *
+ * VITE_API_URL must be the bare backend origin, e.g.:
+ *   https://task-manager-for-ethara-ai.onrender.com
+ *   (no trailing slash, no /api suffix)
  */
 
 import axios from 'axios';
 
-// VITE_API_URL must be set in Railway frontend env vars, e.g.:
-//   https://your-backend.up.railway.app
-const BASE = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
-  : '/api';
+// Strip any accidental trailing slash or /api suffix from the env var
+// so we never end up with double-slashes or /api/api in the URL.
+const rawUrl = (import.meta.env.VITE_API_URL || '').replace(/\/api\/?$/, '').replace(/\/$/, '');
+
+const BASE = rawUrl ? `${rawUrl}/api` : '/api';
 
 const api = axios.create({
   baseURL: BASE,

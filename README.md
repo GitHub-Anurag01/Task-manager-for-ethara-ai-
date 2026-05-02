@@ -1,4 +1,26 @@
-Demo Link of the Project: https://task-manager-for-ethara-ai-1.onrender.com
+## 🚀 Deployment Update
+
+Due to limited time during the initial submission, the project could not be deployed on Railway.
+
+However, after the timeline was extended, the application has now been successfully deployed and is fully functional in Railway platform.
+
+🔗 **Live Demo:** : https://affectionate-gentleness-production-5ca1.up.railway.app/login
+
+The deployed version includes all features such as:
+
+* Authentication (Admin/Member roles)
+* Project and task management
+* Dashboard with task tracking
+* Role-based access control
+
+Here is Demo credentials for admin:
+I'd : admin@taskflow.dev
+Password : 123456
+
+Feel free to explore the live application using the link above.
+
+
+Demo Link on Render platform : https://task-manager-for-ethara-ai-1.onrender.com
 
 # TaskFlow — Team Task Manager
 
